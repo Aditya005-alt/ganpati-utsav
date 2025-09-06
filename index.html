@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Utsav 2025 - A Divine Celebration</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for Interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        /* Custom CSS for base styles and animations */
+        :root {
+            --background: #000000; /* Pure Black */
+            --foreground: #d1d1d1; /* Light Gray */
+            --highlight: #ffffff;   /* Pure White Highlight */
+            --primary: #ff9933;   /* Neon Saffron/Orange */
+            --secondary: #ffd700; /* Neon Golden-Yellow */
+            --accent: #00f2ea;     /* Neon Cyan */
+            --card-bg: rgba(15, 15, 15, 0.5); /* Semi-transparent dark bg */
+            --border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #constellation-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000;
+            opacity: 0.5;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: var(--highlight);
+        }
+        
+        h2, h3.neon-text {
+            text-shadow: 0 0 8px var(--highlight), 0 0 12px var(--highlight);
+        }
+
+        .neon-text-hover {
+            transition: text-shadow 0.3s ease, color 0.3s ease;
+        }
+
+        .neon-text-hover:hover {
+            text-shadow: 0 0 15px var(--highlight), 0 0 25px var(--highlight);
+            color: var(--highlight);
+        }
+        
+        .neon-button {
+            box-shadow: 0 0 5px var(--highlight), 0 0 10px var(--highlight) inset;
+            border: 1px solid var(--highlight);
+            transition: all 0.3s ease;
+            background-color: transparent;
+            color: var(--highlight);
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 15px var(--highlight), 0 0 25px var(--highlight) inset;
+            background-color: var(--highlight);
+            color: var(--background);
+            transform: scale(1.05);
+        }
+        
+        .pulsing-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent) inset; border-color: var(--accent); }
+            50% { box-shadow: 0 0 15px var(--accent), 0 0 25px var(--accent) inset; border-color: var(--accent); }
+            100% { box-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent) inset; border-color: var(--accent); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .small-font-orange {
+            color: var(--primary);
+            text-shadow: 0 0 4px var(--primary);
+        }
+
+        .marquee {
+            background-color: #000;
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.75rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            text-shadow: 0 0 5px var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 35s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        fancy: ['Cinzel Decorative', 'serif'],
+                    },
+                    colors: {
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        highlight: 'var(--highlight)',
+                        primary: 'var(--primary)',
+                        secondary: 'var(--secondary)',
+                        accent: 'var(--accent)',
+                        'card-bg': 'var(--card-bg)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background" x-data="{ lightboxOpen: false, lightboxItem: {}, mobileMenuOpen: false }">
+    
+    <canvas id="constellation-bg"></canvas>
+
+    <!-- Mantra Marquee -->
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>।। ॐ गं गणपतये नमः ।।&nbsp;&nbsp;&nbsp;</span>
+            <span>।। ॐ गं गणपतये नमः ।।&nbsp;&nbsp;&nbsp;</span>
+            <span>।। ॐ गं गणपतये नमः ।।&nbsp;&nbsp;&nbsp;</span>
+            <span>।। ॐ गं गणपतये नमः ।।&nbsp;&nbsp;&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-[41px] bg-black/50 backdrop-blur-lg z-50 shadow-lg border-b border-[var(--border-color)]">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-3xl font-fancy small-font-orange neon-text-hover">श्री गणेश</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-foreground neon-text-hover">About</a>
+                    <a href="#mandals" class="text-foreground neon-text-hover">Mandals</a>
+                    <a href="#live-darshan" class="text-foreground neon-text-hover">Live Darshan</a>
+                    <a href="#calendar" class="text-foreground neon-text-hover">Calendar</a>
+                    <a href="#gallery" class="text-foreground neon-text-hover">Gallery</a>
+                    <a href="#donations" class="text-highlight px-5 py-2 rounded-full neon-button">Donations</a>
+                </div>
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-foreground">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-[100] flex flex-col items-center justify-center space-y-10 text-3xl"
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <a @click="mobileMenuOpen = false" href="#about" class="neon-text-hover">About</a>
+        <a @click="mobileMenuOpen = false" href="#mandals" class="neon-text-hover">Mandals</a>
+        <a @click="mobileMenuOpen = false" href="#live-darshan" class="neon-text-hover">Live Darshan</a>
+        <a @click="mobileMenuOpen = false" href="#calendar" class="neon-text-hover">Calendar</a>
+        <a @click="mobileMenuOpen = false" href="#gallery" class="neon-text-hover">Gallery</a>
+        <a @click="mobileMenuOpen = false" href="#donations" class="neon-text-hover">Donations</a>
+    </div>
+
+    <!-- App Container -->
+    <main>
+        <!-- Hero Banner Section -->
+        <section class="relative min-h-screen overflow-hidden flex items-center justify-center text-center p-4">
+            <div class="absolute inset-0 bg-black/70"></div>
+            <div class="relative z-10 reveal">
+                <img src="./e1a42b40f8401dbcc978f6b07c9e9b96.jpg" alt="Lord Ganesha" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl border-4 border-highlight mx-auto mb-8 transition-transform duration-500 hover:scale-105">
+                <h1 class="text-6xl md:text-8xl font-fancy text-highlight mb-4" style="text-shadow: 0 0 5px var(--highlight), 0 0 10px var(--highlight);">Ganpati Bappa Morya</h1>
+                <p class="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto">Welcome to the grandest celebration of Lord Ganesha.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                    <a href="#donations" class="px-8 py-4 text-lg font-semibold rounded-lg neon-button">Join Celebration</a>
+                    <a href="#about" class="px-8 py-4 text-lg font-semibold rounded-lg neon-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24">
+            <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl text-highlight mb-6">About Ganesh Utsav</h2>
+                    <p class="text-xl text-foreground max-w-3xl mx-auto">This 10-day festival unites communities in worship of the beloved deity who removes obstacles and brings prosperity.</p>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-highlight to-transparent opacity-30"></div>
+                    
+                    <div class="flex justify-start mb-24 reveal">
+                        <div class="w-1/2 pr-12 text-right">
+                            <div class="p-6 rounded-lg card">
+                                <p class="text-highlight font-bold">17th Century</p>
+                                <h3 class="text-2xl text-highlight mb-3">Shivaji Maharaj's Revival</h3>
+                                <p class="small-font-orange">Chhatrapati Shivaji Maharaj and his mother Jijabai re-established the Kasba Ganpati as the Gramdevata of Pune, reviving its cultural prominence.</p>
+                            </div>
+                        </div>
+                        <div class="w-1/2 flex justify-start items-center">
+                            <div class="w-6 h-6 bg-highlight rounded-full border-2 border-highlight ml-[-13px] shadow-[0_0_15px_var(--highlight)]"></div>
+                        </div>
+                    </div>
+
+                     <div class="flex justify-end mb-24 reveal">
+                        <div class="w-1/2 flex justify-end items-center">
+                            <div class="w-6 h-6 bg-highlight rounded-full border-2 border-highlight mr-[-13px] shadow-[0_0_15px_var(--highlight)]"></div>
+                        </div>
+                        <div class="w-1/2 pl-12">
+                             <div class="p-6 rounded-lg card">
+                                <p class="text-highlight font-bold">1892</p>
+                                <h3 class="text-2xl text-highlight mb-3">Bhau Saheb Rangari's Initiative</h3>
+                                <p class="small-font-orange">Shrimant Bhausaheb Rangari initiated the first Sarvajanik (public) Ganeshotsav, uniting people to celebrate together beyond their homes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-start reveal">
+                         <div class="w-1/2 pr-12 text-right">
+                            <div class="p-6 rounded-lg card">
+                                <p class="text-highlight font-bold">1893</p>
+                                <h3 class="text-2xl text-highlight mb-3">Lokmanya Tilak's Vision</h3>
+                                <p class="small-font-orange">Lokmanya Tilak popularized the festival on a grand scale, making it a nationalistic movement to unite Indians against colonial rule.</p>
+                            </div>
+                        </div>
+                         <div class="w-1/2 flex justify-start items-center">
+                            <div class="w-6 h-6 bg-highlight rounded-full border-2 border-highlight ml-[-13px] shadow-[0_0_15px_var(--highlight)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="mandals" class="py-20" x-data="{ mandals: [
+    { id: 1, name: 'Kasba Ganpati, Pune', location: 'Manache Ganpati', description: 'The first and most revered among Pune\'s Manache Panch Ganpati.', image: 'https://thefocusindia.s3.ap-south-1.amazonaws.com/wp-content/uploads/2022/08/26151450/5-7.jpg' },
+    { id: 2, name: 'Dagdusheth Halwai, Pune', location: 'Pune\'s Pride', description: 'One of the most beloved and richest Ganesh mandals in India.', image: 'https://i.pinimg.com/736x/7c/ca/23/7cca232188c1697bc607720f43969988.jpg' },
+    { id: 3, name: 'Lalbaugcha Raja, Mumbai', location: 'Mumbai Idols', description: 'The most famous Ganpati in Mumbai, visited by millions of devotees.', image: 'https://curlytales.com/wp-content/uploads/2025/08/Lalbaugcha-Raja-2025-800x450.jpg' },
+    { id: 4, name: 'Ganesha at Bromo, Indonesia', location: 'Global Celebrations', description: 'A 700-year-old idol protecting the active Mount Bromo volcano.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVokxi4qsvDqPp26Z1R72rJ2RrqMtZQ957Q&s' }
+] }">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-5xl text-highlight mb-6">Famous Ganpati Mandals</h2>
+            <p class="text-xl text-foreground max-w-3xl mx-auto">Discover the most revered Ganesha idols from Pune, Mumbai, and across the world.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 reveal">
+            <template x-for="mandal in mandals" :key="mandal.id">
+                <div class="relative h-96 card group">
+                    <img :src="mandal.image" :alt="mandal.name" class="absolute inset-0 w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold mb-2" x-text="mandal.location"></span>
+                        <h3 class="text-2xl text-highlight" x-text="mandal.name"></h3>
+                        <p class="small-font-orange transition-opacity opacity-0 group-hover:opacity-100" x-text="mandal.description"></p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
+
+        <!-- Live Darshan Section -->
+        <section id="live-darshan" class="py-20">
+            <div class="container mx-auto px-4 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl text-highlight mb-6">Live Darshan</h2>
+                    <p class="text-xl text-foreground max-w-3xl mx-auto">Experience the divine presence from anywhere. Connect with the most sacred Ganesha temples live.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="card p-6 text-center">
+                        <img src="https://traveleva.gumlet.io/activities/1950/1950_plating-devotee-around-delhi-weighing-donated-gold_2f6fc288-3c2a-11ea-bfbd-f812f33ac46f.jpg?w=1244&h=312" alt="Siddhivinayak Temple" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="text-3xl text-highlight mb-2">Siddhivinayak Temple</h3>
+                        <p class="small-font-orange mb-4">Mumbai, Maharashtra</p>
+                        <a href="#" class="inline-block w-full py-3 text-lg font-semibold rounded-lg neon-button pulsing-button" style="--accent: var(--highlight);">Watch Live</a>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <img src="https://images.pexels.com/photos/28288477/pexels-photo-28288477.jpeg" alt="Dagdusheth Halwai Temple" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="text-3xl text-highlight mb-2">Dagdusheth Halwai Temple</h3>
+                        <p class="small-font-orange mb-4">Pune, Maharashtra</p>
+                        <a href="#" class="inline-block w-full py-3 text-lg font-semibold rounded-lg neon-button pulsing-button" style="--accent: var(--highlight);">Watch Live</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Calendar Section -->
+        <section id="calendar" class="py-20" x-data="{ 
+            selectedDay: 1,
+            schedules: {
+                1: { title: 'Pranpratishtha', events: ['Morning: Idol Installation (Sthapana)', 'Afternoon: Pran Pratishtha Puja', 'Evening: First Aarti'] },
+                2: { title: 'Cultural Day', events: ['Morning: Shodashopachara Puja', 'Afternoon: Bhajans & Kirtans', 'Evening: Traditional Dance Performance'] },
+                10: { title: 'Visarjan Day', events: ['Morning: Uttar Puja & Final Aarti', 'Afternoon: Grand Procession Begins', 'Evening: Idol Immersion (Visarjan)'] }
+            }
+        }">
+             <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl text-highlight mb-6">10-Day Festival Schedule</h2>
+                    <p class="text-xl text-foreground max-w-3xl mx-auto">Experience the complete journey of Ganesh Utsav with our detailed daily schedule.</p>
+                </div>
+                <div class="grid grid-cols-5 md:grid-cols-10 gap-2 mb-12">
+                     <template x-for="day in 10">
+                         <button @click="selectedDay = day" :class="selectedDay === day ? 'bg-highlight text-background scale-110' : 'bg-card-bg border border-highlight/20 hover:border-highlight text-foreground'" class="p-4 rounded-lg text-center transition-all duration-300 shadow-lg">
+                             <div class="font-bold" x-text="day"></div>
+                         </button>
+                     </template>
+                </div>
+                <div class="card p-8 min-h-[15rem]">
+                    <h3 class="text-3xl text-highlight mb-4" x-text="`Day ${selectedDay}: ${schedules[selectedDay]?.title || 'Celebration Day'}`"></h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg small-font-orange">
+                        <template x-if="schedules[selectedDay]">
+                            <template x-for="event in schedules[selectedDay].events">
+                                <li x-text="event"></li>
+                            </template>
+                        </template>
+                        <template x-if="!schedules[selectedDay]">
+                            <li>Morning: Community Puja & Aarti</li>
+                            <li>Afternoon: Prasad Distribution</li>
+                            <li>Evening: Cultural Programs & Darshan</li>
+                        </template>
+                    </ul>
+                </div>
+             </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20">
+            <div class="container mx-auto px-4 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl text-highlight mb-6">Divine Gallery</h2>
+                    <p class="text-xl text-foreground max-w-3xl mx-auto">A collection of beautiful and divine images of Lord Ganesha from around the world.</p>
+                </div>
+                <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                    <div class="break-inside-avoid"><img @click="lightboxOpen = true; lightboxItem = { src: 'https://images.pexels.com/photos/3946868/pexels-photo-3946868.jpeg', title: '' }" src="https://images.pexels.com/photos/3946868/pexels-photo-3946868.jpeg" alt="Siddhivinayak Idol" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"></div>
+                    <div class="break-inside-avoid"><img @click="lightboxOpen = true; lightboxItem = { src: 'https://c1.wallpaperflare.com/preview/564/535/658/ganesha-ganesh-chaturthi-ganesh-festival-indian-festival.jpg', title: '' }" src="https://media.istockphoto.com/id/2178232597/photo/big-statues-of-lord-ganesha-during-ganesh-visarjan.jpg?b=1&s=612x612&w=0&k=20&c=y0wRJJSYbXd3W1NWSJZK-P3qnf-p58CusiggAQ6xsIY=" alt="Pandal Grandeur" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"></div>
+                    <div class="break-inside-avoid"><img @click="lightboxOpen = true; lightboxItem = { src: 'https://images.unsplash.com/photo-1602236169924-b4265a72f056?q=80&w=1000&auto=format&fit=crop', title: '' }" src="https://images.pexels.com/photos/13078613/pexels-photo-13078613.jpeg" alt="" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"></div>
+                    <div class="break-inside-avoid"><img @click="lightboxOpen = true; lightboxItem = { src: 'https://e1.pxfuel.com/desktop-wallpaper/83/866/desktop-wallpaper-cute-bal-ganesh-for-android-little-ganesha.jpg', title: '' }" src="https://media.istockphoto.com/id/2178232498/photo/big-statues-of-lord-ganesha-during-ganesh-visarjan.jpg?b=1&s=612x612&w=0&k=20&c=aTWnpvy2Ycj1qZ0M1WlVGLXG5PKahMhhMP8C1L0OgD8=" alt="Bal Ganesha" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"></div>
+                    <div class="break-inside-avoid"><img @click="lightboxOpen = true; lightboxItem = { src: 'https://i.pinimg.com/originals/3d/b0/76/3db07647299a9a30438a165602498a58.jpg', title: '' }" src="https://images.pexels.com/photos/18454569/pexels-photo-18454569.jpeg" alt="Celestial Power" class="rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Donation Section -->
+        <section id="donations" class="py-20">
+            <div class="container mx-auto px-6 reveal">
+                 <div class="text-center mb-16">
+                    <h2 class="text-5xl text-highlight mb-6">Seva & Participation</h2>
+                    <p class="text-xl text-foreground max-w-3xl mx-auto">Your contribution helps preserve traditions and spread joy. Join hands with us.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card p-8 text-center">
+                        <div class="text-6xl mb-4">🍽️</div>
+                        <h3 class="text-2xl text-highlight mb-2">Anna Daan Seva</h3>
+                        <p class="small-font-orange mb-6">Provide free meals to devotees during the 10-day festival.</p>
+                        <button class="w-full py-3 text-lg font-semibold neon-button">Donate Now</button>
+                    </div>
+                     <div class="card p-8 text-center">
+                        <div class="text-6xl mb-4">🌱</div>
+                        <h3 class="text-2xl text-highlight mb-2">Eco-Friendly Idol Seva</h3>
+                        <p class="small-font-orange mb-6">Support the creation of clay idols that dissolve harmlessly in water.</p>
+                         <button class="w-full py-3 text-lg font-semibold neon-button">Donate Now</button>
+                    </div>
+                     <div class="card p-8 text-center">
+                        <div class="text-6xl mb-4">🎭</div>
+                        <h3 class="text-2xl text-highlight mb-2">Cultural Seva</h3>
+                        <p class="small-font-orange mb-6">Fund traditional music, dance, and art performances for all to enjoy.</p>
+                         <button class="w-full py-3 text-lg font-semibold neon-button">Donate Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="bg-black text-white py-16 border-t border-[var(--border-color)]">
+            <div class="container mx-auto text-center relative z-10">
+                <h3 class="text-4xl font-fancy text-highlight mb-4">Ganesh Utsav 2024</h3>
+                <p class="text-gray-300 mb-8">Celebrating divinity, unity, and joy.</p>
+                <p class="text-gray-400 text-sm">© 2024 Ganesh Utsav Festival Committee. All rights reserved.</p>
+                 <p class="text-highlight font-fancy text-3xl mt-6">गणपति बप्पा मोरया!</p>
+            </div>
+        </footer>
+
+    </main>
+
+     <!-- Lightbox Modal and closing scripts -->
+     <div x-show="lightboxOpen" @click.away="lightboxOpen = false" class="fixed inset-0 bg-black/90 z-[1100] flex items-center justify-center p-4"
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="relative bg-background/50 backdrop-blur-lg p-4 rounded-lg max-w-4xl max-h-full"
+             x-show="lightboxOpen"
+             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+            <button @click="lightboxOpen = false" class="absolute -top-5 -right-5 w-12 h-12 bg-highlight text-black rounded-full text-3xl z-10 neon-button">&times;</button>
+            <img :src="lightboxItem.src" :alt="lightboxItem.title" class="max-w-full max-h-[80vh] object-contain rounded-md">
+            <h4 class="text-center text-xl text-highlight mt-4" x-text="lightboxItem.title"></h4>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Constellation background script
+            const canvas = document.getElementById('constellation-bg');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                let stars = [];
+                for (let i = 0; i < 100; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 1.5,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5
+                    });
+                }
+
+                function draw() {
+                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                    
+                    for (let i = 0, x = stars.length; i < x; i++) {
+                        let s = stars[i];
+                        ctx.fillStyle = "#fff";
+                        ctx.beginPath();
+                        ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                }
+
+                function update() {
+                    for (let i = 0, x = stars.length; i < x; i++) {
+                        let s = stars[i];
+                        s.x += s.vx;
+                        s.y += s.vy;
+                        if (s.x < 0 || s.x > canvas.width) s.x = Math.random() * canvas.width;
+                        if (s.y < 0 || s.y > canvas.height) s.y = Math.random() * canvas.height;
+                    }
+                }
+
+                function tick() {
+                    draw();
+                    update();
+                    requestAnimationFrame(tick);
+                }
+                tick();
+            }
+        });
+    </script>
+</body>
+</html>
+
